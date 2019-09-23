@@ -1,16 +1,54 @@
 # Test case for Slim 4 Base path handling
-See [https://github.com/slimphp/Slim/issues/2512]
+See Slim 4 [Issue 2512](https://github.com/slimphp/Slim/issues/2512) and [Issue 2842](https://github.com/slimphp/Slim/issues/2842)
+
 
 # Installation
 
-- clone repo
+Clone repo and install dependencies
+```sh
+git clone https://github.com/piotr-cz/Slim-4-basepath-issue.git
+composer install
+```
 
-- ```sh
-  composer install
-  ```
-  
-- ```sh
-  composer start
-  ```
-  
+
+# Testing instructions
+
+- Start `composer start`
 - Open http://localhost:8080/subdir/
+
+
+# Results for creating `about` route
+
+App->setBasePath | RouteCollector->setBasePath | Base URL                 | RouteParser::urlFor    | RouteParser::relativeUrlFor
+:---------------:|:---------------------------:|:-------------------------|:-----------------------|:---------------------------
+ ❌               | ❌                           | `localhost:8080`         | `/about`               | `/about`
+ ✔️               | ❌                           | `localhost:8080/subdir/` | `/subdir/about`        | `/subdir/about`
+ ❌               |️ ️✔️ ️                          | `localhost:8080`         | `/subdir/about`        | `/about`
+ ✔️  ️             | ✔️                           | `localhost:8080/subdir/` | `/subdir/subdir/about` | `/subdir/about`
+ ?               | ?                           | `localhost:8080/subdir/` | `/subdir/about`        | `about`
+
+
+# Expected results
+
+When Slim application is run in subdirectory, it should be possible to
+- configure base it's path
+- create proper routes (absolute/ relative)
+
+```php
+$app = AppFactory::create();
+$app->setBasePath('/subdir');
+
+$app->get('/', function ($request, $response) { return $response; })
+    ->setName('home');
+
+$app->get('/about', function ($request, $response) { return $response; })
+    ->setName('about')
+
+$routeParser = $app->getRouteCollector()->getRouteParser();
+
+echo $routeParser->urlFor('home');          // `/subdir/`
+echo $routeParser->relativeUrlFor('home');  // ``
+
+echo $routeParser->urlFor('about');         // `/subdir/about`
+echo $routeParser->relativeUrlFor('about'); // `about`
+```
