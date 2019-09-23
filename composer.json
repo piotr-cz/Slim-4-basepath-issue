@@ -1,0 +1,19 @@
+{
+    "name": "piotr-cz/slim-4-basepath-test",
+    "description": "Slim 4 BasePathtest",
+    "type": "project",
+    "require": {
+        "php": ">= 7.1.0",
+        "slim/slim": "4.2.0",
+        "slim/psr7": "^0.5.0"
+    },
+    "scripts": {
+        "start": "php -S localhost:8080 -t . public/index.php"
+    },
+    "scripts-descriptions": {
+        "start": "Start development server on http://localhost:8888"
+    },
+    "config": {
+        "process-timeout": 0
+    }
+}
