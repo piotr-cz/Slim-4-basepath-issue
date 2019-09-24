@@ -30,7 +30,7 @@ $responseRenderer = function (Request $request, Response $response, string $rout
 
     // ATM need to create Base URI manually, see https://github.com/slimphp/Slim/issues/2837
     $baseHref = $routeParser->fullUrlFor($uri, 'home');
-  
+
     $response->getBody()->write(<<<HTML
         <!DOCTYPE html>
         <html>

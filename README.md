@@ -46,9 +46,11 @@ $app->get('/about', function ($request, $response) { return $response; })
 
 $routeParser = $app->getRouteCollector()->getRouteParser();
 
-echo $routeParser->urlFor('home');          // `/subdir/`
-echo $routeParser->relativeUrlFor('home');  // ``
+echo $routeParser->urlFor('home');            // `/subdir/`
+echo $routeParser->relativeUrlFor('home');    // ``
+echo $routeParser->fullUrlFor($uri, 'home');  // http://localhost:8080/subdir/
 
-echo $routeParser->urlFor('about');         // `/subdir/about`
-echo $routeParser->relativeUrlFor('about'); // `about`
+echo $routeParser->urlFor('about');           // `/subdir/about`
+echo $routeParser->relativeUrlFor('about');   // `about`
+echo $routeParser->fullUrlFor($uri, 'about'); // http://localhost:8080/subdir/about
 ```
