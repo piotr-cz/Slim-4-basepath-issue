@@ -21,14 +21,6 @@ $request = \Slim\Factory\ServerRequestCreatorFactory::create()->createServerRequ
 $app->setBasePath($basePath); // Required to resolve current route by router
 // $app->getRouteCollector()->setBasePath($basePath); // This soubles basepath in RouteParser methods (routes already include basePath)
 
-/*
-// Workaround with middleware
-require_once __DIR__ . '/BasePathMiddleware.php';
-
-$app->add(new BasePathMiddleware($basePath));
-// BasePathMiddleware::configureSlimApp($app, $basePath);
-*/
-
 
 // Response renderer
 $routeParser = $app->getRouteCollector()->getRouteParser();
