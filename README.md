@@ -1,5 +1,5 @@
 # Test case for Slim 4 Base path handling
-See Slim 4 [Issue 2512](https://github.com/slimphp/Slim/issues/2512) and [Issue 2842](https://github.com/slimphp/Slim/issues/2842)
+See Slim 4 [Issue #2512](https://github.com/slimphp/Slim/issues/2512) and [Issue #2842](https://github.com/slimphp/Slim/issues/2842)
 
 
 # Installation
@@ -21,10 +21,10 @@ composer install
 
 App->setBasePath | RouteCollector->setBasePath | Base URL                 | RouteParser::urlFor    | RouteParser::relativeUrlFor
 :---------------:|:---------------------------:|:-------------------------|:-----------------------|:---------------------------
- ❌               | ❌                           | `localhost:8080`         | `/about`               | `/about`
- ✔️               | ❌                           | `localhost:8080/subdir/` | `/subdir/about`        | `/subdir/about`
- ❌               |️ ️✔️ ️                          | `localhost:8080`         | `/subdir/about`        | `/about`
- ✔️  ️             | ✔️                           | `localhost:8080/subdir/` | `/subdir/subdir/about` | `/subdir/about`
+ ✗               | ✗                           | `localhost:8080`         | `/about`               | `/about`
+ ✓️               | ✗                           | `localhost:8080/subdir/` | `/subdir/about`        | `/subdir/about`
+ ✗               |️ ✓                           | `localhost:8080`         | `/subdir/about`        | `/about`
+ ✓               | ✓                           | `localhost:8080/subdir/` | `/subdir/subdir/about` | `/subdir/about`
  ?               | ?                           | `localhost:8080/subdir/` | `/subdir/about`        | `about`
 
 

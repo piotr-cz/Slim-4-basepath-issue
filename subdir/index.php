@@ -19,7 +19,7 @@ $basePath = '/subdir';
 // Handle base path
 $request = \Slim\Factory\ServerRequestCreatorFactory::create()->createServerRequestFromGlobals();
 $app->setBasePath($basePath); // Required to resolve current route by router
-// $app->getRouteCollector()->setBasePath($basePath); // This soubles basepath in RouteParser methods (routes already include basePath)
+// $app->getRouteCollector()->setBasePath($basePath); // This doubles resulting basePath in RouteParser methods (routes already include basePath)
 
 
 // Response renderer
